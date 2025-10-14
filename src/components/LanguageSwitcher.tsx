@@ -14,19 +14,28 @@ const languages = [
   { code: "es", name: "Español", flag: "🇪🇸" },
 ];
 
-export const LanguageSwitcher = () => {
+interface LanguageSwitcherProps {
+  language: string;
+  onLanguageChange: (lang: string) => void;
+}
+
+export const LanguageSwitcher = ({ language, onLanguageChange }: LanguageSwitcherProps) => {
+  const currentLang = languages.find(l => l.code === language) || languages[0];
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="glass border-white/20 text-foreground hover:bg-white/10">
           <Globe className="h-4 w-4 mr-2" />
-          Language
+          <span className="mr-1">{currentLang.flag}</span>
+          {currentLang.name}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="glass border-white/20 bg-card/80">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
+            onClick={() => onLanguageChange(lang.code)}
             className="cursor-pointer hover:bg-white/10"
           >
             <span className="mr-2">{lang.flag}</span>

@@ -14,7 +14,159 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          created_at: string | null
+          id: string
+          notes: string | null
+          preferred_date: string | null
+          severity: string
+          specialist_type: string
+          status: string | null
+          symptoms: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          preferred_date?: string | null
+          severity: string
+          specialist_type: string
+          status?: string | null
+          symptoms: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          preferred_date?: string | null
+          severity?: string
+          specialist_type?: string
+          status?: string | null
+          symptoms?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_history: {
+        Row: {
+          created_at: string | null
+          id: string
+          language: string
+          message: string
+          response: string
+          severity_level: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          language: string
+          message: string
+          response: string
+          severity_level?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          language?: string
+          message?: string
+          response?: string
+          severity_level?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_history_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      medical_records: {
+        Row: {
+          created_at: string | null
+          diagnosis: string
+          id: string
+          notes: string | null
+          recommended_specialist: string | null
+          severity: string
+          symptoms: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          diagnosis: string
+          id?: string
+          notes?: string | null
+          recommended_specialist?: string | null
+          severity: string
+          symptoms: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          diagnosis?: string
+          id?: string
+          notes?: string | null
+          recommended_specialist?: string | null
+          severity?: string
+          symptoms?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medical_records_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          allergies: string[] | null
+          created_at: string | null
+          full_name: string | null
+          gender: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          age?: number | null
+          allergies?: string[] | null
+          created_at?: string | null
+          full_name?: string | null
+          gender?: string | null
+          id: string
+          updated_at?: string | null
+        }
+        Update: {
+          age?: number | null
+          allergies?: string[] | null
+          created_at?: string | null
+          full_name?: string | null
+          gender?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
