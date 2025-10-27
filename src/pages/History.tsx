@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/Navbar";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { ArrowLeft, Activity, Calendar, MapPin, Phone } from "lucide-react";
+import { Calendar, MapPin, Phone } from "lucide-react";
 import { format } from "date-fns";
 
 const History = () => {

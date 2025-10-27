@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChatMessage } from "@/components/ChatMessage";
 import { ChatInput } from "@/components/ChatInput";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { ArrowLeft, Activity, LogOut, History, User as UserIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";

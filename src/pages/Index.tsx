@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Activity, Sparkles, Shield, Globe2, LogIn } from "lucide-react";
+import { Navbar } from "@/components/Navbar";
+import { Activity, Sparkles, Shield, Globe2, Bot, Zap, Heart, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Index = () => {
@@ -10,71 +10,134 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Activity className="h-8 w-8 text-primary animate-glow" />
-          <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            MediAgent
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <LanguageSwitcher language={language} onLanguageChange={setLanguage} />
-          <Button
-            onClick={() => navigate("/auth")}
-            variant="outline"
-            className="glass border-white/20 hover:bg-white/10"
-          >
-            <LogIn className="h-4 w-4 mr-2" />
-            Login
-          </Button>
-        </div>
-      </nav>
+      <Navbar language={language} onLanguageChange={setLanguage} />
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Floating decoration */}
-          <div className="absolute top-20 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute top-40 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
-          
-          <div className="relative z-10">
-            <div className="inline-block mb-6 glass px-4 py-2 rounded-full">
-              <span className="text-sm font-medium text-primary">AI-Powered Health Assistant</span>
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div className="inline-block glass px-4 py-2 rounded-full">
+                <span className="text-sm font-medium text-primary">🤖 AI-Powered Health Assistant</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                Your Personal
+                <span className="block bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-glow mt-2">
+                  Medical Companion
+                </span>
+              </h1>
+            
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                {language === 'en' && "Get instant AI-powered health insights in your preferred language. Track your medical history, find nearby pharmacies, and book appointments - all in one place."}
+                {language === 'hi' && "अपनी पसंदीदा भाषा में तुरंत AI-संचालित स्वास्थ्य जानकारी प्राप्त करें। अपना चिकित्सा इतिहास ट्रैक करें, नजदीकी फार्मेसियां खोजें और अपॉइंटमेंट बुक करें।"}
+                {language === 'mr' && "तुमच्या पसंतीच्या भाषेत झटपट AI-शक्तीयुक्त आरोग्य माहिती मिळवा. तुमचा वैद्यकीय इतिहास ट्रॅक करा, जवळपासची फार्मसी शोधा आणि भेटी बुक करा."}
+                {language === 'es' && "Obtén información de salud instantánea con IA en tu idioma preferido. Rastrea tu historial médico, encuentra farmacias cercanas y reserva citas."}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  onClick={() => navigate("/auth")}
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8 py-6 rounded-full glow-primary transition-all hover:scale-105"
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  {language === 'en' && "Get Started Free"}
+                  {language === 'hi' && "मुफ्त शुरू करें"}
+                  {language === 'mr' && "विनामूल्य सुरू करा"}
+                  {language === 'es' && "Empezar Gratis"}
+                </Button>
+                <Button
+                  onClick={() => navigate("/chat")}
+                  size="lg"
+                  variant="outline"
+                  className="glass border-white/20 text-lg px-8 py-6 rounded-full"
+                >
+                  {language === 'en' && "Try Demo"}
+                  {language === 'hi' && "डेमो आज़माएँ"}
+                  {language === 'mr' && "डेमो वापरून पहा"}
+                  {language === 'es' && "Probar Demo"}
+                </Button>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6 pt-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary">4</div>
+                  <div className="text-sm text-muted-foreground">
+                    {language === 'en' && "Languages"}
+                    {language === 'hi' && "भाषाएं"}
+                    {language === 'mr' && "भाषा"}
+                    {language === 'es' && "Idiomas"}
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-accent">24/7</div>
+                  <div className="text-sm text-muted-foreground">
+                    {language === 'en' && "Available"}
+                    {language === 'hi' && "उपलब्ध"}
+                    {language === 'mr' && "उपलब्ध"}
+                    {language === 'es' && "Disponible"}
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-secondary">AI</div>
+                  <div className="text-sm text-muted-foreground">
+                    {language === 'en' && "Powered"}
+                    {language === 'hi' && "संचालित"}
+                    {language === 'mr' && "शक्तीयुक्त"}
+                    {language === 'es' && "Potenciado"}
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Your Personal
-              <span className="block bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-glow">
-                Medical Companion
-              </span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {language === 'en' && "Get instant AI-powered health insights in your preferred language. Track your medical history, find nearby pharmacies, and book appointments."}
-              {language === 'hi' && "अपनी पसंदीदा भाषा में तुरंत AI-संचालित स्वास्थ्य जानकारी प्राप्त करें। अपना चिकित्सा इतिहास ट्रैक करें, नजदीकी फार्मेसियां खोजें और अपॉइंटमेंट बुक करें।"}
-              {language === 'mr' && "तुमच्या पसंतीच्या भाषेत झटपट AI-शक्तीयुक्त आरोग्य माहिती मिळवा. तुमचा वैद्यकीय इतिहास ट्रॅक करा, जवळपासची फार्मसी शोधा आणि भेटी बुक करा."}
-              {language === 'es' && "Obtén información de salud instantánea con IA en tu idioma preferido. Rastrea tu historial médico, encuentra farmacias cercanas y reserva citas."}
-            </p>
-            
-            <div className="flex gap-4 justify-center">
-              <Button
-                onClick={() => navigate("/auth")}
-                size="lg"
-                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8 py-6 rounded-full glow-primary transition-all hover:scale-105"
-              >
-                <Sparkles className="mr-2 h-5 w-5" />
-                {language === 'en' && "Get Started Free"}
-                {language === 'hi' && "मुफ्त शुरू करें"}
-                {language === 'mr' && "विनामूल्य सुरू करा"}
-                {language === 'es' && "Empezar Gratis"}
-              </Button>
+
+            {/* Right Side - Decorative */}
+            <div className="relative hidden lg:block">
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
+                <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+                <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "4s" }} />
+              </div>
+              <div className="relative z-10 glass rounded-3xl p-8 space-y-6">
+                <div className="flex items-center gap-4 p-4 glass rounded-2xl animate-fade-in">
+                  <Bot className="h-12 w-12 text-primary" />
+                  <div>
+                    <div className="font-semibold">AI Health Analysis</div>
+                    <div className="text-sm text-muted-foreground">Instant symptom checking</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 glass rounded-2xl animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                  <Zap className="h-12 w-12 text-accent" />
+                  <div>
+                    <div className="font-semibold">Quick Appointments</div>
+                    <div className="text-sm text-muted-foreground">Book specialists instantly</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 glass rounded-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
+                  <Heart className="h-12 w-12 text-secondary" />
+                  <div>
+                    <div className="font-semibold">Health Tracking</div>
+                    <div className="text-sm text-muted-foreground">Complete medical history</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Features */}
-        <div className="mt-32 grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              {language === 'en' && "Powerful Features"}
+              {language === 'hi' && "शक्तिशाली सुविधाएं"}
+              {language === 'mr' && "शक्तिशाली वैशिष्ट्ये"}
+              {language === 'es' && "Características Poderosas"}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="glass rounded-2xl p-6 text-center hover:border-primary/50 transition-all hover:scale-105">
             <div className="w-14 h-14 mx-auto mb-4 rounded-full glass flex items-center justify-center glow-primary">
               <Activity className="h-7 w-7 text-primary" />
@@ -148,8 +211,105 @@ const Index = () => {
           </div>
         </div>
 
+        {/* Why Choose Us */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="glass rounded-3xl p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  {language === 'en' && "Why Choose MediAgent?"}
+                  {language === 'hi' && "MediAgent क्यों चुनें?"}
+                  {language === 'mr' && "MediAgent का निवडावे?"}
+                  {language === 'es' && "¿Por qué elegir MediAgent?"}
+                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <TrendingUp className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">
+                        {language === 'en' && "Advanced AI Technology"}
+                        {language === 'hi' && "उन्नत AI तकनीक"}
+                        {language === 'mr' && "प्रगत AI तंत्रज्ञान"}
+                        {language === 'es' && "Tecnología AI Avanzada"}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {language === 'en' && "Powered by latest AI models for accurate health insights"}
+                        {language === 'hi' && "सटीक स्वास्थ्य जानकारी के लिए नवीनतम AI मॉडल द्वारा संचालित"}
+                        {language === 'mr' && "अचूक आरोग्य माहितीसाठी नवीनतम AI मॉडेलद्वारे समर्थित"}
+                        {language === 'es' && "Impulsado por los últimos modelos de IA"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <Shield className="h-4 w-4 text-secondary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">
+                        {language === 'en' && "Secure & Private"}
+                        {language === 'hi' && "सुरक्षित और निजी"}
+                        {language === 'mr' && "सुरक्षित आणि खाजगी"}
+                        {language === 'es' && "Seguro y Privado"}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {language === 'en' && "Your health data is encrypted and stored securely"}
+                        {language === 'hi' && "आपका स्वास्थ्य डेटा एन्क्रिप्टेड और सुरक्षित रूप से संग्रहीत है"}
+                        {language === 'mr' && "तुमचा आरोग्य डेटा एन्क्रिप्ट केलेला आणि सुरक्षितपणे संग्रहित आहे"}
+                        {language === 'es' && "Tus datos de salud están encriptados"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <Globe2 className="h-4 w-4 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">
+                        {language === 'en' && "Multilingual Support"}
+                        {language === 'hi' && "बहुभाषी समर्थन"}
+                        {language === 'mr' && "बहुभाषिक समर्थन"}
+                        {language === 'es' && "Soporte Multilingüe"}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {language === 'en' && "Communicate in your preferred language"}
+                        {language === 'hi' && "अपनी पसंदीदा भाषा में संवाद करें"}
+                        {language === 'mr' && "तुमच्या पसंतीच्या भाषेत संवाद साधा"}
+                        {language === 'es' && "Comunícate en tu idioma preferido"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="hidden md:block">
+                <div className="glass rounded-2xl p-6 space-y-4">
+                  <div className="h-48 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-xl flex items-center justify-center">
+                    <Activity className="h-24 w-24 text-primary animate-glow" />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-semibold text-lg">
+                      {language === 'en' && "Trusted by thousands"}
+                      {language === 'hi' && "हजारों द्वारा विश्वसनीय"}
+                      {language === 'mr' && "हजारो द्वारे विश्वासार्ह"}
+                      {language === 'es' && "Confiado por miles"}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'en' && "Join our growing community"}
+                      {language === 'hi' && "हमारे बढ़ते समुदाय से जुड़ें"}
+                      {language === 'mr' && "आमच्या वाढत्या समुदायात सामील व्हा"}
+                      {language === 'es' && "Únete a nuestra comunidad"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
         {/* How it Works */}
-        <div className="mt-32 max-w-4xl mx-auto">
+        <div className="mt-24 max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
             {language === 'en' && "How It Works"}
             {language === 'hi' && "यह कैसे काम करता है"}
