@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Activity, Menu, X, MapPin, History, User, MessageSquare } from "lucide-react";
+import { Activity, Menu, X, MapPin, History, User, MessageSquare, Watch } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 interface NavbarProps {
@@ -20,6 +20,7 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
     en: {
       chat: "Chat",
       pharmacies: "Pharmacies",
+      healthMonitoring: "Health Monitor",
       history: "History",
       profile: "Profile",
       login: "Login",
@@ -28,6 +29,7 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
     hi: {
       chat: "चैट",
       pharmacies: "फार्मेसी",
+      healthMonitoring: "स्वास्थ्य मॉनिटर",
       history: "इतिहास",
       profile: "प्रोफ़ाइल",
       login: "लॉगिन",
@@ -36,6 +38,7 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
     mr: {
       chat: "चॅट",
       pharmacies: "फार्मसी",
+      healthMonitoring: "आरोग्य मॉनिटर",
       history: "इतिहास",
       profile: "प्रोफाइल",
       login: "लॉगिन",
@@ -44,6 +47,7 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
     es: {
       chat: "Chat",
       pharmacies: "Farmacias",
+      healthMonitoring: "Monitor de Salud",
       history: "Historial",
       profile: "Perfil",
       login: "Iniciar sesión",
@@ -79,6 +83,12 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
                   <Button variant="ghost" className="gap-2">
                     <MapPin className="h-4 w-4" />
                     {t.pharmacies}
+                  </Button>
+                </Link>
+                <Link to="/health-monitoring">
+                  <Button variant="ghost" className="gap-2">
+                    <Watch className="h-4 w-4" />
+                    {t.healthMonitoring}
                   </Button>
                 </Link>
                 <Link to="/history">
@@ -135,6 +145,12 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
                   <Button variant="ghost" className="w-full justify-start gap-2">
                     <MapPin className="h-4 w-4" />
                     {t.pharmacies}
+                  </Button>
+                </Link>
+                <Link to="/health-monitoring" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full justify-start gap-2">
+                    <Watch className="h-4 w-4" />
+                    {t.healthMonitoring}
                   </Button>
                 </Link>
                 <Link to="/history" onClick={() => setMobileMenuOpen(false)}>
