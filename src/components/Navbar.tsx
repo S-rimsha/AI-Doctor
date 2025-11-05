@@ -18,38 +18,66 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
 
   const translations = {
     en: {
+      home: "Home",
       chat: "Chat",
+      about: "About",
+      howItWorks: "How It Works",
+      contact: "Contact",
+      healthGuide: "Health Guide",
+      settings: "Settings",
       pharmacies: "Pharmacies",
       healthMonitoring: "Health Monitor",
       history: "History",
       profile: "Profile",
+      trackRecords: "Track Records",
       login: "Login",
       logout: "Logout",
     },
     hi: {
+      home: "होम",
       chat: "चैट",
+      about: "हमारे बारे में",
+      howItWorks: "यह कैसे काम करता है",
+      contact: "संपर्क करें",
+      healthGuide: "स्वास्थ्य गाइड",
+      settings: "सेटिंग्स",
       pharmacies: "फार्मेसी",
       healthMonitoring: "स्वास्थ्य मॉनिटर",
       history: "इतिहास",
       profile: "प्रोफ़ाइल",
+      trackRecords: "रिकॉर्ड ट्रैक करें",
       login: "लॉगिन",
       logout: "लॉगआउट",
     },
     mr: {
+      home: "मुख्यपृष्ठ",
       chat: "चॅट",
+      about: "आमच्याबद्दल",
+      howItWorks: "हे कसे कार्य करते",
+      contact: "संपर्क",
+      healthGuide: "आरोग्य मार्गदर्शक",
+      settings: "सेटिंग्ज",
       pharmacies: "फार्मसी",
       healthMonitoring: "आरोग्य मॉनिटर",
       history: "इतिहास",
       profile: "प्रोफाइल",
+      trackRecords: "रेकॉर्ड ट्रॅक करा",
       login: "लॉगिन",
       logout: "लॉगआउट",
     },
     es: {
+      home: "Inicio",
       chat: "Chat",
+      about: "Acerca de",
+      howItWorks: "Cómo Funciona",
+      contact: "Contacto",
+      healthGuide: "Guía de Salud",
+      settings: "Ajustes",
       pharmacies: "Farmacias",
       healthMonitoring: "Monitor de Salud",
       history: "Historial",
       profile: "Perfil",
+      trackRecords: "Seguimiento",
       login: "Iniciar sesión",
       logout: "Cerrar sesión",
     },
@@ -70,38 +98,45 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4">
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+              {t.home}
+            </Link>
+            <Link to="/chat" className="text-sm font-medium hover:text-primary transition-colors">
+              {t.chat}
+            </Link>
+            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
+              {t.about}
+            </Link>
+            <Link to="/how-it-works" className="text-sm font-medium hover:text-primary transition-colors">
+              {t.howItWorks}
+            </Link>
+            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
+              {t.contact}
+            </Link>
+            <Link to="/health-guide" className="text-sm font-medium hover:text-primary transition-colors">
+              {t.healthGuide}
+            </Link>
+            
             {user && (
               <>
-                <Link to="/chat">
-                  <Button variant="ghost" className="gap-2">
-                    <MessageSquare className="h-4 w-4" />
-                    {t.chat}
-                  </Button>
+                <Link to="/pharmacies" className="text-sm font-medium hover:text-primary transition-colors">
+                  {t.pharmacies}
                 </Link>
-                <Link to="/pharmacies">
-                  <Button variant="ghost" className="gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {t.pharmacies}
-                  </Button>
+                <Link to="/health-monitoring" className="text-sm font-medium hover:text-primary transition-colors">
+                  {t.healthMonitoring}
                 </Link>
-                <Link to="/health-monitoring">
-                  <Button variant="ghost" className="gap-2">
-                    <Watch className="h-4 w-4" />
-                    {t.healthMonitoring}
-                  </Button>
+                <Link to="/history" className="text-sm font-medium hover:text-primary transition-colors">
+                  {t.history}
                 </Link>
-                <Link to="/history">
-                  <Button variant="ghost" className="gap-2">
-                    <History className="h-4 w-4" />
-                    {t.history}
-                  </Button>
+                <Link to="/profile" className="text-sm font-medium hover:text-primary transition-colors">
+                  {t.profile}
                 </Link>
-                <Link to="/profile">
-                  <Button variant="ghost" className="gap-2">
-                    <User className="h-4 w-4" />
-                    {t.profile}
-                  </Button>
+                <Link to="/track-records" className="text-sm font-medium hover:text-primary transition-colors">
+                  {t.trackRecords}
+                </Link>
+                <Link to="/settings" className="text-sm font-medium hover:text-primary transition-colors">
+                  {t.settings}
                 </Link>
               </>
             )}
@@ -111,11 +146,11 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
             )}
 
             {user ? (
-              <Button onClick={signOut} variant="outline" className="glass border-white/20">
+              <Button onClick={signOut} variant="outline" size="sm" className="glass border-white/20">
                 {t.logout}
               </Button>
             ) : (
-              <Button onClick={() => navigate("/auth")} className="bg-gradient-to-r from-primary to-accent">
+              <Button onClick={() => navigate("/auth")} size="sm" className="bg-gradient-to-r from-primary to-accent">
                 {t.login}
               </Button>
             )}
@@ -133,37 +168,44 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-2">
+            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.home}
+            </Link>
+            <Link to="/chat" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.chat}
+            </Link>
+            <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.about}
+            </Link>
+            <Link to="/how-it-works" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.howItWorks}
+            </Link>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.contact}
+            </Link>
+            <Link to="/health-guide" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.healthGuide}
+            </Link>
+            
             {user && (
               <>
-                <Link to="/chat" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start gap-2">
-                    <MessageSquare className="h-4 w-4" />
-                    {t.chat}
-                  </Button>
+                <Link to="/pharmacies" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.pharmacies}
                 </Link>
-                <Link to="/pharmacies" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {t.pharmacies}
-                  </Button>
+                <Link to="/health-monitoring" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.healthMonitoring}
                 </Link>
-                <Link to="/health-monitoring" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start gap-2">
-                    <Watch className="h-4 w-4" />
-                    {t.healthMonitoring}
-                  </Button>
+                <Link to="/history" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.history}
                 </Link>
-                <Link to="/history" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start gap-2">
-                    <History className="h-4 w-4" />
-                    {t.history}
-                  </Button>
+                <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.profile}
                 </Link>
-                <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start gap-2">
-                    <User className="h-4 w-4" />
-                    {t.profile}
-                  </Button>
+                <Link to="/track-records" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.trackRecords}
+                </Link>
+                <Link to="/settings" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.settings}
                 </Link>
               </>
             )}
