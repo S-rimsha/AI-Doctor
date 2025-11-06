@@ -122,9 +122,6 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
                 <Link to="/health-monitoring" className="text-sm font-medium hover:text-primary transition-colors">
                   {t.healthMonitoring}
                 </Link>
-                <Link to="/history" className="text-sm font-medium hover:text-primary transition-colors">
-                  {t.history}
-                </Link>
                 <Link to="/profile" className="text-sm font-medium hover:text-primary transition-colors">
                   {t.profile}
                 </Link>
@@ -190,9 +187,6 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
                 </Link>
                 <Link to="/health-monitoring" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
                   {t.healthMonitoring}
-                </Link>
-                <Link to="/history" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                  {t.history}
                 </Link>
                 <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
                   {t.profile}

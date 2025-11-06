@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Activity, Sparkles, Shield, Globe2, Bot, Zap, Heart, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [language, setLanguage] = useState("en");
 
   return (
@@ -36,30 +38,44 @@ const Index = () => {
                 {language === 'es' && "Obtén información de salud instantánea con IA en tu idioma preferido. Rastrea tu historial médico, encuentra farmacias cercanas y reserva citas."}
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              {!user ? (
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    onClick={() => navigate("/auth")}
+                    size="lg"
+                    className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8 py-6 rounded-full glow-primary transition-all hover:scale-105"
+                  >
+                    <Sparkles className="mr-2 h-5 w-5" />
+                    {language === 'en' && "Get Started Free"}
+                    {language === 'hi' && "मुफ्त शुरू करें"}
+                    {language === 'mr' && "विनामूल्य सुरू करा"}
+                    {language === 'es' && "Empezar Gratis"}
+                  </Button>
+                  <Button
+                    onClick={() => navigate("/chat")}
+                    size="lg"
+                    variant="outline"
+                    className="glass border-white/20 text-lg px-8 py-6 rounded-full"
+                  >
+                    {language === 'en' && "Try Demo"}
+                    {language === 'hi' && "डेमो आज़माएँ"}
+                    {language === 'mr' && "डेमो वापरून पहा"}
+                    {language === 'es' && "Probar Demo"}
+                  </Button>
+                </div>
+              ) : (
                 <Button
-                  onClick={() => navigate("/auth")}
+                  onClick={() => navigate("/chat")}
                   size="lg"
                   className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-8 py-6 rounded-full glow-primary transition-all hover:scale-105"
                 >
                   <Sparkles className="mr-2 h-5 w-5" />
-                  {language === 'en' && "Get Started Free"}
-                  {language === 'hi' && "मुफ्त शुरू करें"}
-                  {language === 'mr' && "विनामूल्य सुरू करा"}
-                  {language === 'es' && "Empezar Gratis"}
+                  {language === 'en' && "Start Chatting"}
+                  {language === 'hi' && "चैट शुरू करें"}
+                  {language === 'mr' && "चॅट सुरू करा"}
+                  {language === 'es' && "Empezar a Chatear"}
                 </Button>
-                <Button
-                  onClick={() => navigate("/chat")}
-                  size="lg"
-                  variant="outline"
-                  className="glass border-white/20 text-lg px-8 py-6 rounded-full"
-                >
-                  {language === 'en' && "Try Demo"}
-                  {language === 'hi' && "डेमो आज़माएँ"}
-                  {language === 'mr' && "डेमो वापरून पहा"}
-                  {language === 'es' && "Probar Demo"}
-                </Button>
-              </div>
+              )}
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">

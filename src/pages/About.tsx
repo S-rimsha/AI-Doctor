@@ -31,7 +31,7 @@ const About = () => {
                 What We Do
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Medi Soul combines advanced AI technology with medical knowledge to provide:
+                Medi Soul leverages cutting-edge AI trained on data from world-trusted medical sources including Drugs.com, NHS.uk, and WHO guidelines. Our AI has been trained on thousands of doctor-approved prescriptions and medical protocols to provide reliable health insights for common and basic medical conditions.
               </p>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -48,11 +48,15 @@ const About = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">•</span>
-                  <span>Smart health monitoring with wearable device integration</span>
+                  <span>Verified medical information from trusted sources like Drugs.com, NHS.uk, and WHO</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">•</span>
-                  <span>Pharmacy locator and appointment booking</span>
+                  <span>AI trained on doctor-approved prescriptions and medical protocols</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary font-bold">•</span>
+                  <span>Pharmacy locator and health information services</span>
                 </li>
               </ul>
             </div>
@@ -78,7 +82,7 @@ const About = () => {
                 <div>
                   <h3 className="font-semibold text-secondary mb-2">Accuracy</h3>
                   <p className="text-sm text-muted-foreground">
-                    Our AI is trained on reliable medical data to provide accurate health insights.
+                    Our AI is trained on verified data from Drugs.com, NHS.uk, WHO, and thousands of doctor-approved prescriptions for reliable health insights.
                   </p>
                 </div>
                 <div>
@@ -96,10 +100,11 @@ const About = () => {
                 Why Trust Us
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Medi Soul is built on cutting-edge AI technology and medical research. While our AI provides valuable 
-                health insights, we always recommend consulting with healthcare professionals for serious medical concerns. 
-                We serve as your first point of contact for health questions, helping you make informed decisions about 
-                when to seek professional medical care.
+                Medi Soul is built on cutting-edge AI technology trained on authoritative medical data from Drugs.com, NHS.uk, WHO, 
+                and thousands of doctor-approved medical prescriptions. Our AI provides evidence-based health insights for common 
+                and basic medical conditions. While our AI is highly accurate for general health guidance, we always recommend 
+                consulting with healthcare professionals for serious medical concerns. We serve as your first point of contact 
+                for health questions, helping you make informed decisions about when to seek professional medical care.
               </p>
             </div>
           </div>

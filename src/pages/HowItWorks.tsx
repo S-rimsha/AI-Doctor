@@ -12,7 +12,7 @@ const HowItWorks = () => {
             How Medi Soul Works
           </h1>
           <p className="text-xl text-center text-muted-foreground mb-16">
-            Get health insights in 3 simple steps
+            Medi Soul uses advanced AI trained on trusted medical sources (Drugs.com, NHS.uk, WHO) and thousands of doctor-approved prescriptions to provide accurate health insights in 3 simple steps
           </p>
 
           <div className="space-y-12">
@@ -52,7 +52,7 @@ const HowItWorks = () => {
                     Get AI-Powered Analysis
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Our advanced AI analyzes your symptoms using medical knowledge databases. Within seconds, 
+                    Our advanced AI analyzes your symptoms using medical knowledge trained on trusted sources like Drugs.com, NHS.uk, WHO, and thousands of doctor-approved prescriptions. Within seconds, 
                     you'll receive detailed insights about potential conditions, severity assessment, and 
                     recommended next steps. The AI considers your medical history and allergies (if provided) 
                     for personalized advice.
@@ -75,10 +75,9 @@ const HowItWorks = () => {
                     Take Action
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Based on the analysis, you can book appointments with recommended specialists, find nearby 
-                    pharmacies, or track your symptoms over time. All conversations are saved in your history 
-                    for future reference. For emergency situations, our AI will alert you to seek immediate 
-                    medical attention.
+                    Based on the analysis, you can find nearby pharmacies or track your symptoms over time. 
+                    All conversations are saved in your history for future reference. For emergency situations, 
+                    our AI will alert you to seek immediate medical attention.
                   </p>
                 </div>
               </div>

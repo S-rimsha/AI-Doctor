@@ -140,15 +140,39 @@ const ContactUs = () => {
                 </div>
               </div>
 
-              <div className="glass rounded-3xl p-8">
-                <h3 className="font-bold mb-4">Frequently Asked Questions</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Before contacting us, check out our FAQ section for quick answers to common questions.
-                </p>
-                <Button variant="outline" className="w-full">
-                  View FAQs
-                </Button>
+            <div className="glass rounded-3xl p-8">
+              <h3 className="font-bold mb-4">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <div>
+                  <p className="font-semibold mb-2">Q: Is my health data secure?</p>
+                  <p className="text-sm text-muted-foreground">A: Yes! All your health data is encrypted and stored securely. We never share your information without your explicit consent.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Q: Can I use Medi Soul in my language?</p>
+                  <p className="text-sm text-muted-foreground">A: Absolutely! We support English, Hindi, Marathi, and Spanish with plans to add more languages soon.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Q: Do you provide actual medical diagnoses?</p>
+                  <p className="text-sm text-muted-foreground">A: No, our AI provides health insights and guidance based on your symptoms. We always recommend consulting healthcare professionals for official diagnoses and treatment.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Q: Is the service available 24/7?</p>
+                  <p className="text-sm text-muted-foreground">A: Yes! Our AI chatbot is available round the clock to answer your health questions anytime, anywhere.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Q: How accurate is your AI?</p>
+                  <p className="text-sm text-muted-foreground">A: Our AI is trained on data from trusted sources like Drugs.com, NHS.uk, WHO, and thousands of doctor-approved prescriptions for reliable insights on common conditions.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Q: Can I track my medical history?</p>
+                  <p className="text-sm text-muted-foreground">A: Yes! When you create an account, all your conversations and medical records are saved securely for future reference.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Q: Do I need to create an account?</p>
+                  <p className="text-sm text-muted-foreground">A: You can try our demo mode without an account, but creating an account unlocks features like chat history, profile management, and medicine tracking.</p>
+                </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
