@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Pill, Calendar, Trash2 } from "lucide-react";
+import { Plus, Pill, Calendar, Trash2, Upload, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface MedicineRecord {
@@ -16,6 +16,7 @@ interface MedicineRecord {
   dosage: string;
   date_taken: string;
   notes: string;
+  image_url?: string;
   created_at: string;
 }
 
@@ -31,6 +32,8 @@ const TrackRecords = () => {
     date_taken: new Date().toISOString().split('T')[0],
     notes: ""
   });
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -63,15 +66,55 @@ const TrackRecords = () => {
     }
   };
 
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
+
+    let imageUrl = null;
+
+    // Upload image if selected
+    if (selectedImage) {
+      const fileExt = selectedImage.name.split('.').pop();
+      const fileName = `${user.id}/${Math.random()}.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('medicine_images')
+        .upload(fileName, selectedImage);
+
+      if (uploadError) {
+        toast({
+          title: "Error",
+          description: "Failed to upload image. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('medicine_images')
+        .getPublicUrl(fileName);
+      
+      imageUrl = publicUrl;
+    }
 
     const { error } = await supabase
       .from('medicine_records')
       .insert({
         user_id: user.id,
-        ...formData
+        ...formData,
+        image_url: imageUrl
       });
 
     if (error) {
@@ -94,6 +137,8 @@ const TrackRecords = () => {
       date_taken: new Date().toISOString().split('T')[0],
       notes: ""
     });
+    setSelectedImage(null);
+    setImagePreview(null);
     setShowForm(false);
     loadRecords();
   };
@@ -194,6 +239,35 @@ const TrackRecords = () => {
                     rows={3}
                   />
                 </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block">
+                    <Upload className="h-4 w-4 inline mr-2" />
+                    Upload Image (Optional)
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageSelect}
+                      className="flex-1"
+                    />
+                    {imagePreview && (
+                      <div className="relative">
+                        <img src={imagePreview} alt="Preview" className="h-16 w-16 object-cover rounded-lg" />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedImage(null);
+                            setImagePreview(null);
+                          }}
+                          className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="flex gap-3">
                   <Button type="submit" className="flex-1 bg-gradient-to-r from-primary to-accent">
                     Save Record
@@ -217,7 +291,7 @@ const TrackRecords = () => {
             ) : (
               records.map((record) => (
                 <Card key={record.id} className="glass p-6 hover:border-primary/50 transition-colors">
-                  <div className="flex justify-between items-start">
+                  <div className="flex justify-between items-start gap-4">
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-primary mb-2">
                         {record.medicine_name}
@@ -229,6 +303,15 @@ const TrackRecords = () => {
                           <p className="mt-2"><strong>Notes:</strong> {record.notes}</p>
                         )}
                       </div>
+                      {record.image_url && (
+                        <div className="mt-3">
+                          <img 
+                            src={record.image_url} 
+                            alt={record.medicine_name}
+                            className="w-32 h-32 object-cover rounded-lg border border-border"
+                          />
+                        </div>
+                      )}
                     </div>
                     <Button
                       variant="ghost"

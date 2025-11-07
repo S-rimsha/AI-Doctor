@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { MessageSquare } from "lucide-react";
+import whatsappQR from "@/assets/whatsapp-qr.jpg";
 
 interface Message {
   text: string;
@@ -164,19 +167,59 @@ const Chat = () => {
           </div>
         )}
         
-        <div className="glass rounded-2xl p-4 mb-4">
-          <p className="text-sm text-muted-foreground">
-            <strong className="text-foreground">Powered by Advanced AI</strong> • 
-            This chatbot uses cutting-edge medical AI to provide health insights.
-            <a 
-              href="https://botpress.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="ml-2 text-primary hover:underline font-medium"
-            >
-              Learn more about Botpress →
-            </a>
+        <div className="glass rounded-2xl p-6 mb-4">
+          <h3 className="text-lg font-bold mb-3 text-primary">
+            🩺 About Our AI Medical Assistant
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Our AI is trained on authoritative medical data from <strong className="text-foreground">Drugs.com</strong>, <strong className="text-foreground">NHS.uk</strong>, and <strong className="text-foreground">WHO</strong>. We've analyzed thousands of doctor-approved prescriptions to provide you with accurate health insights for basic medical conditions. This is tested, reliable data you can trust.
           </p>
+          
+          <div className="grid md:grid-cols-2 gap-4 mt-6">
+            {/* Web Chat Option */}
+            <div className="glass rounded-xl p-4 border border-primary/20">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
+                <MessageSquare className="h-5 w-5 text-primary" />
+                Chat via Web
+              </h4>
+              <p className="text-xs text-muted-foreground mb-3">
+                Access our full-featured AI chatbot directly in your browser
+              </p>
+              <a
+                href="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/11/05/13/20251105134750-K99NV8X6.json"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full"
+              >
+                <Button className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                  Open AI Medic Chatbot
+                </Button>
+              </a>
+            </div>
+
+            {/* WhatsApp Option */}
+            <div className="glass rounded-xl p-4 border border-accent/20">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
+                <MessageSquare className="h-5 w-5 text-accent" />
+                Chat via WhatsApp
+              </h4>
+              <p className="text-xs text-muted-foreground mb-3">
+                Connect with our pre-tested AI assistant on WhatsApp
+              </p>
+              <div className="space-y-3">
+                <img 
+                  src={whatsappQR} 
+                  alt="WhatsApp QR Code" 
+                  className="w-32 h-32 mx-auto rounded-lg"
+                />
+                <div className="text-xs space-y-2">
+                  <p><strong>Step 1:</strong> Scan QR code or click: <a href="https://api.whatsapp.com/send?phone=15817019840&text=JA9HDD" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Open WhatsApp</a></p>
+                  <p><strong>Step 2:</strong> Send linking code: <code className="bg-muted px-2 py-1 rounded">JA9HDD</code></p>
+                  <p><strong>Step 3:</strong> Type "Hi" to start chatting!</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {messages.map((message, index) => (

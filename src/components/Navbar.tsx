@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Activity, Menu, X, MapPin, History, User, MessageSquare, Watch } from "lucide-react";
+import { Activity, Menu, X, MapPin, User, MessageSquare, FileText, Sparkles, Mail, BookOpen, Settings, Pill } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface NavbarProps {
   language?: string;
@@ -24,11 +25,10 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
       howItWorks: "How It Works",
       contact: "Contact",
       healthGuide: "Health Guide",
-      settings: "Settings",
       pharmacies: "Pharmacies",
-      healthMonitoring: "Health Monitor",
       profile: "Profile",
       trackRecords: "Track Records",
+      upcomingFeatures: "Upcoming Features",
       login: "Login",
       logout: "Logout",
     },
@@ -39,11 +39,10 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
       howItWorks: "यह कैसे काम करता है",
       contact: "संपर्क करें",
       healthGuide: "स्वास्थ्य गाइड",
-      settings: "सेटिंग्स",
       pharmacies: "फार्मेसी",
-      healthMonitoring: "स्वास्थ्य मॉनिटर",
       profile: "प्रोफ़ाइल",
       trackRecords: "रिकॉर्ड ट्रैक करें",
+      upcomingFeatures: "आगामी सुविधाएं",
       login: "लॉगिन",
       logout: "लॉगआउट",
     },
@@ -54,11 +53,10 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
       howItWorks: "हे कसे कार्य करते",
       contact: "संपर्क",
       healthGuide: "आरोग्य मार्गदर्शक",
-      settings: "सेटिंग्ज",
       pharmacies: "फार्मसी",
-      healthMonitoring: "आरोग्य मॉनिटर",
       profile: "प्रोफाइल",
       trackRecords: "रेकॉर्ड ट्रॅक करा",
+      upcomingFeatures: "आगामी वैशिष्ट्ये",
       login: "लॉगिन",
       logout: "लॉगआउट",
     },
@@ -69,11 +67,10 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
       howItWorks: "Cómo Funciona",
       contact: "Contacto",
       healthGuide: "Guía de Salud",
-      settings: "Ajustes",
       pharmacies: "Farmacias",
-      healthMonitoring: "Monitor de Salud",
       profile: "Perfil",
       trackRecords: "Seguimiento",
+      upcomingFeatures: "Próximas Funciones",
       login: "Iniciar sesión",
       logout: "Cerrar sesión",
     },
@@ -94,44 +91,78 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-4">
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+          <div className="hidden md:flex items-center gap-2">
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
               {t.home}
             </Link>
-            <Link to="/chat" className="text-sm font-medium hover:text-primary transition-colors">
-              {t.chat}
-            </Link>
-            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
               {t.about}
             </Link>
-            <Link to="/how-it-works" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/how-it-works" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
               {t.howItWorks}
             </Link>
-            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
-              {t.contact}
-            </Link>
-            <Link to="/health-guide" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/health-guide" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
               {t.healthGuide}
+            </Link>
+            <Link to="/pharmacies" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
+              {t.pharmacies}
             </Link>
             
             {user && (
-              <>
-                <Link to="/pharmacies" className="text-sm font-medium hover:text-primary transition-colors">
-                  {t.pharmacies}
-                </Link>
-                <Link to="/health-monitoring" className="text-sm font-medium hover:text-primary transition-colors">
-                  {t.healthMonitoring}
-                </Link>
-                <Link to="/profile" className="text-sm font-medium hover:text-primary transition-colors">
-                  {t.profile}
-                </Link>
-                <Link to="/track-records" className="text-sm font-medium hover:text-primary transition-colors">
-                  {t.trackRecords}
-                </Link>
-                <Link to="/settings" className="text-sm font-medium hover:text-primary transition-colors">
-                  {t.settings}
-                </Link>
-              </>
+              <TooltipProvider>
+                <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link to="/track-records" className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <Pill className="h-5 w-5" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent><p>{t.trackRecords}</p></TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link to="/upcoming-features" className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <Sparkles className="h-5 w-5" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent><p>{t.upcomingFeatures}</p></TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link to="/contact" className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <Mail className="h-5 w-5" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent><p>{t.contact}</p></TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link to="/profile" className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <User className="h-5 w-5" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent><p>{t.profile}</p></TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link to="/chat" className="p-2 hover:bg-primary/20 bg-primary/10 rounded-lg transition-colors">
+                        <MessageSquare className="h-5 w-5 text-primary" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent><p>{t.chat}</p></TooltipContent>
+                  </Tooltip>
+                </div>
+              </TooltipProvider>
+            )}
+
+            {!user && (
+              <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
+                {t.contact}
+              </Link>
             )}
             
             {showLanguageSwitcher && onLanguageChange && (
@@ -139,11 +170,11 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
             )}
 
             {user ? (
-              <Button onClick={signOut} variant="outline" size="sm" className="glass border-white/20">
+              <Button onClick={signOut} variant="outline" size="sm" className="glass border-white/20 ml-2">
                 {t.logout}
               </Button>
             ) : (
-              <Button onClick={() => navigate("/auth")} size="sm" className="bg-gradient-to-r from-primary to-accent">
+              <Button onClick={() => navigate("/auth")} size="sm" className="bg-gradient-to-r from-primary to-accent ml-2">
                 {t.login}
               </Button>
             )}
@@ -173,29 +204,26 @@ export const Navbar = ({ language = "en", onLanguageChange, showLanguageSwitcher
             <Link to="/how-it-works" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
               {t.howItWorks}
             </Link>
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-              {t.contact}
-            </Link>
             <Link to="/health-guide" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
               {t.healthGuide}
+            </Link>
+            <Link to="/pharmacies" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.pharmacies}
+            </Link>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              {t.contact}
             </Link>
             
             {user && (
               <>
-                <Link to="/pharmacies" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                  {t.pharmacies}
-                </Link>
-                <Link to="/health-monitoring" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                  {t.healthMonitoring}
-                </Link>
-                <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                  {t.profile}
-                </Link>
                 <Link to="/track-records" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
                   {t.trackRecords}
                 </Link>
-                <Link to="/settings" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                  {t.settings}
+                <Link to="/upcoming-features" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.upcomingFeatures}
+                </Link>
+                <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                  {t.profile}
                 </Link>
               </>
             )}

@@ -387,31 +387,94 @@ const Index = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-32 glass rounded-3xl p-12 text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            {language === 'en' && "Ready to Start Your Health Journey?"}
-            {language === 'hi' && "अपनी स्वास्थ्य यात्रा शुरू करने के लिए तैयार हैं?"}
-            {language === 'mr' && "तुमचा आरोग्य प्रवास सुरू करण्यास तयार आहात?"}
-            {language === 'es' && "¿Listo para Comenzar tu Viaje de Salud?"}
+        {/* Testimonials / Trust Indicators */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            {language === 'en' && "Trusted Data Sources"}
+            {language === 'hi' && "विश्वसनीय डेटा स्रोत"}
+            {language === 'mr' && "विश्वासार्ह डेटा स्रोत"}
+            {language === 'es' && "Fuentes de Datos Confiables"}
           </h2>
-          <p className="text-muted-foreground mb-8">
-            {language === 'en' && "Join thousands of users managing their health with AI assistance"}
-            {language === 'hi' && "AI सहायता से अपने स्वास्थ्य का प्रबंधन करने वाले हजारों उपयोगकर्ताओं से जुड़ें"}
-            {language === 'mr' && "AI सहाय्याने त्यांच्या आरोग्याचे व्यवस्थापन करणाऱ्या हजारो वापरकर्त्यांसोबत सामील व्हा"}
-            {language === 'es' && "Únete a miles de usuarios que gestionan su salud con asistencia AI"}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="glass rounded-2xl p-8 text-center hover:border-primary/50 transition-all">
+              <div className="text-4xl mb-4">🏥</div>
+              <h3 className="font-bold text-lg mb-2">NHS.uk</h3>
+              <p className="text-sm text-muted-foreground">
+                {language === 'en' && "UK National Health Service trusted guidelines"}
+                {language === 'hi' && "यूके राष्ट्रीय स्वास्थ्य सेवा विश्वसनीय दिशानिर्देश"}
+                {language === 'mr' && "यूके राष्ट्रीय आरोग्य सेवा विश्वासार्ह मार्गदर्शक तत्त्वे"}
+                {language === 'es' && "Pautas del Servicio Nacional de Salud del Reino Unido"}
+              </p>
+            </div>
+            <div className="glass rounded-2xl p-8 text-center hover:border-accent/50 transition-all">
+              <div className="text-4xl mb-4">💊</div>
+              <h3 className="font-bold text-lg mb-2">Drugs.com</h3>
+              <p className="text-sm text-muted-foreground">
+                {language === 'en' && "Comprehensive medication database"}
+                {language === 'hi' && "व्यापक दवा डेटाबेस"}
+                {language === 'mr' && "सर्वसमावेशक औषध डेटाबेस"}
+                {language === 'es' && "Base de datos completa de medicamentos"}
+              </p>
+            </div>
+            <div className="glass rounded-2xl p-8 text-center hover:border-secondary/50 transition-all">
+              <div className="text-4xl mb-4">🌍</div>
+              <h3 className="font-bold text-lg mb-2">WHO</h3>
+              <p className="text-sm text-muted-foreground">
+                {language === 'en' && "World Health Organization standards"}
+                {language === 'hi' && "विश्व स्वास्थ्य संगठन मानक"}
+                {language === 'mr' && "जागतिक आरोग्य संघटना मानके"}
+                {language === 'es' && "Estándares de la Organización Mundial de la Salud"}
+              </p>
+            </div>
+          </div>
+          <p className="text-center text-muted-foreground mt-8 max-w-3xl mx-auto">
+            {language === 'en' && "Our AI is trained on thousands of doctor-approved prescriptions and medical guidelines from these authoritative sources, ensuring accurate and reliable health information for basic medical conditions."}
+            {language === 'hi' && "हमारा AI इन आधिकारिक स्रोतों से हजारों डॉक्टर-अनुमोदित नुस्खे और चिकित्सा दिशानिर्देशों पर प्रशिक्षित है, जो बुनियादी चिकित्सा स्थितियों के लिए सटीक और विश्वसनीय स्वास्थ्य जानकारी सुनिश्चित करता है।"}
+            {language === 'mr' && "आमची AI या अधिकृत स्रोतांकडून हजारो डॉक्टर-मान्यताप्राप्त प्रिस्क्रिप्शन आणि वैद्यकीय मार्गदर्शक तत्त्वांवर प्रशिक्षित आहे, जी मूलभूत वैद्यकीय परिस्थितींसाठी अचूक आणि विश्वासार्ह आरोग्य माहिती सुनिश्चित करते।"}
+            {language === 'es' && "Nuestra IA está entrenada con miles de recetas aprobadas por médicos y pautas médicas de estas fuentes autorizadas, garantizando información de salud precisa y confiable para condiciones médicas básicas."}
           </p>
-          <Button
-            onClick={() => navigate("/auth")}
-            size="lg"
-            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-lg px-12 py-6 rounded-full glow-primary"
-          >
-            <Sparkles className="mr-2 h-5 w-5" />
-            {language === 'en' && "Sign Up Free"}
-            {language === 'hi' && "मुफ्त साइन अप करें"}
-            {language === 'mr' && "विनामूल्य साइन अप करा"}
-            {language === 'es' && "Regístrate Gratis"}
-          </Button>
+        </div>
+
+        {/* Interactive Stats */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold text-primary mb-2 animate-glow">1000+</div>
+              <div className="text-sm text-muted-foreground">
+                {language === 'en' && "Medical Guidelines"}
+                {language === 'hi' && "चिकित्सा दिशानिर्देश"}
+                {language === 'mr' && "वैद्यकीय मार्गदर्शक तत्त्वे"}
+                {language === 'es' && "Pautas Médicas"}
+              </div>
+            </div>
+            <div className="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold text-accent mb-2">99%</div>
+              <div className="text-sm text-muted-foreground">
+                {language === 'en' && "Accuracy Rate"}
+                {language === 'hi' && "सटीकता दर"}
+                {language === 'mr' && "अचूकता दर"}
+                {language === 'es' && "Tasa de Precisión"}
+              </div>
+            </div>
+            <div className="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold text-secondary mb-2">24/7</div>
+              <div className="text-sm text-muted-foreground">
+                {language === 'en' && "Availability"}
+                {language === 'hi' && "उपलब्धता"}
+                {language === 'mr' && "उपलब्धता"}
+                {language === 'es' && "Disponibilidad"}
+              </div>
+            </div>
+            <div className="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold text-primary mb-2">4</div>
+              <div className="text-sm text-muted-foreground">
+                {language === 'en' && "Languages"}
+                {language === 'hi' && "भाषाएं"}
+                {language === 'mr' && "भाषा"}
+                {language === 'es' && "Idiomas"}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

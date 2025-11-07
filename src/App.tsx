@@ -16,6 +16,7 @@ import ContactUs from "./pages/ContactUs";
 import BasicHealthGuide from "./pages/BasicHealthGuide";
 import Settings from "./pages/Settings";
 import TrackRecords from "./pages/TrackRecords";
+import UpcomingFeatures from "./pages/UpcomingFeatures";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/pharmacies" element={<Pharmacies />} />
           <Route path="/health-monitoring" element={<HealthMonitoring />} />
           <Route path="/track-records" element={<TrackRecords />} />
+          <Route path="/upcoming-features" element={<UpcomingFeatures />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
