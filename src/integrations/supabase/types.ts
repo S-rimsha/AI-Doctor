@@ -143,6 +143,7 @@ export type Database = {
           date_taken: string
           dosage: string
           id: string
+          image_url: string | null
           medicine_name: string
           notes: string | null
           user_id: string
@@ -152,6 +153,7 @@ export type Database = {
           date_taken: string
           dosage: string
           id?: string
+          image_url?: string | null
           medicine_name: string
           notes?: string | null
           user_id: string
@@ -161,6 +163,7 @@ export type Database = {
           date_taken?: string
           dosage?: string
           id?: string
+          image_url?: string | null
           medicine_name?: string
           notes?: string | null
           user_id?: string

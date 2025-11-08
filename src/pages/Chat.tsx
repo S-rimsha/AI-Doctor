@@ -222,15 +222,27 @@ const Chat = () => {
           </div>
         </div>
 
-        <div className="glass rounded-2xl p-6 mb-4 border-2 border-muted">
+          <div className="glass rounded-2xl p-6 mb-4 border-2 border-muted">
           <h3 className="text-lg font-bold mb-3">
-            💬 In-App General Chatbot
+            💬 {language === 'en' ? 'In-App General Chatbot' : language === 'hi' ? 'इन-ऐप सामान्य चैटबॉट' : language === 'mr' ? 'इन-अॅप सामान्य चॅटबॉट' : 'Chatbot General en la Aplicación'}
           </h3>
           <p className="text-sm text-muted-foreground mb-2">
-            This is a <strong className="text-foreground">general chatbot</strong> that can help you in any language with various topics. 
+            {language === 'en' 
+              ? "This is a general chatbot that can help you in any language with various topics."
+              : language === 'hi'
+              ? "यह एक सामान्य चैटबॉट है जो विभिन्न विषयों पर किसी भी भाषा में आपकी मदद कर सकता है।"
+              : language === 'mr'
+              ? "हा एक सामान्य चॅटबॉट आहे जो कोणत्याही भाषेत विविध विषयांवर तुम्हाला मदत करू शकतो।"
+              : "Este es un chatbot general que puede ayudarte en cualquier idioma con varios temas."}
           </p>
           <p className="text-sm text-primary font-semibold">
-            ⚠️ For health-related queries or prescriptions, please use the AI Medical Assistant chatbots mentioned above (WhatsApp or Web).
+            {language === 'en'
+              ? "⚠️ For health-related queries or prescriptions, please use the AI Medical Assistant chatbots mentioned above (WhatsApp or Web)."
+              : language === 'hi'
+              ? "⚠️ स्वास्थ्य संबंधी प्रश्नों या नुस्खों के लिए, कृपया ऊपर उल्लिखित AI मेडिकल असिस्टेंट चैटबॉट (WhatsApp या वेब) का उपयोग करें।"
+              : language === 'mr'
+              ? "⚠️ आरोग्य संबंधित प्रश्न किंवा प्रिस्क्रिप्शनसाठी, कृपया वर नमूद केलेले AI मेडिकल असिस्टंट चॅटबॉट (WhatsApp किंवा वेब) वापरा।"
+              : "⚠️ Para consultas relacionadas con la salud o recetas, use los chatbots del Asistente Médico de IA mencionados arriba (WhatsApp o Web)."}
           </p>
         </div>
 

@@ -1,9 +1,48 @@
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Watch, Brain, Calendar, FileText, Camera, TrendingUp, Users, Shield, Video, Pill } from "lucide-react";
 
 const UpcomingFeatures = () => {
+  const [language, setLanguage] = useState("en");
+
+  const translations = {
+    en: {
+      badge: "Coming Soon",
+      title: "Upcoming Features",
+      subtitle: "We're constantly innovating to bring you the most advanced AI-powered healthcare experience. Here's what we're working on to make your health journey even better.",
+      suggestTitle: "Want to Suggest a Feature?",
+      suggestDesc: "We'd love to hear your ideas! Help us shape the future of MediSoul by sharing your feature requests.",
+      contactBtn: "Contact Us"
+    },
+    hi: {
+      badge: "जल्द आ रहा है",
+      title: "आगामी विशेषताएं",
+      subtitle: "हम आपके लिए सबसे उन्नत AI-संचालित स्वास्थ्य सेवा अनुभव लाने के लिए लगातार नवाचार कर रहे हैं। यहां बताया गया है कि हम आपकी स्वास्थ्य यात्रा को और बेहतर बनाने के लिए क्या काम कर रहे हैं।",
+      suggestTitle: "एक सुविधा का सुझाव देना चाहते हैं?",
+      suggestDesc: "हम आपके विचार सुनना पसंद करेंगे! अपने फीचर अनुरोध साझा करके MediSoul के भविष्य को आकार देने में हमारी मदद करें।",
+      contactBtn: "हमसे संपर्क करें"
+    },
+    mr: {
+      badge: "लवकरच येत आहे",
+      title: "आगामी वैशिष्ट्ये",
+      subtitle: "तुम्हाला सर्वात प्रगत AI-संचालित आरोग्यसेवा अनुभव आणण्यासाठी आम्ही सतत नवनवीन प्रयोग करत आहोत. तुमचा आरोग्य प्रवास अधिक चांगला करण्यासाठी आम्ही काय करत आहोत ते येथे आहे.",
+      suggestTitle: "वैशिष्ट्य सुचवायचे आहे?",
+      suggestDesc: "आम्हाला तुमच्या कल्पना ऐकायला आवडतील! तुमच्या फीचर विनंत्या शेअर करून MediSoul च्या भविष्याला आकार देण्यास आम्हाला मदत करा.",
+      contactBtn: "आमच्याशी संपर्क साधा"
+    },
+    es: {
+      badge: "Próximamente",
+      title: "Próximas Funciones",
+      subtitle: "Innovamos constantemente para ofrecerte la experiencia de salud más avanzada con IA. Esto es en lo que estamos trabajando para mejorar tu viaje de salud.",
+      suggestTitle: "¿Quieres Sugerir una Función?",
+      suggestDesc: "¡Nos encantaría escuchar tus ideas! Ayúdanos a dar forma al futuro de MediSoul compartiendo tus solicitudes de funciones.",
+      contactBtn: "Contáctanos"
+    }
+  };
+
+  const t = translations[language as keyof typeof translations];
   const upcomingFeatures = [
     {
       icon: Watch,
@@ -79,20 +118,19 @@ const UpcomingFeatures = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <Navbar language={language} onLanguageChange={setLanguage} />
       
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <Badge className="mb-4 text-lg px-4 py-2 bg-primary/10 text-primary border-primary/20">
-              🚀 Coming Soon
+              🚀 {t.badge}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Upcoming Features
+              {t.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We're constantly innovating to bring you the most advanced AI-powered healthcare experience. 
-              Here's what we're working on to make your health journey even better.
+              {t.subtitle}
             </p>
           </div>
 
@@ -134,13 +172,13 @@ const UpcomingFeatures = () => {
           </div>
 
           <div className="mt-16 glass rounded-3xl p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Want to Suggest a Feature?</h2>
+            <h2 className="text-2xl font-bold mb-4">{t.suggestTitle}</h2>
             <p className="text-muted-foreground mb-6">
-              We'd love to hear your ideas! Help us shape the future of Medi Soul by sharing your feature requests.
+              {t.suggestDesc}
             </p>
             <a href="/contact" className="inline-block">
               <button className="bg-gradient-to-r from-primary to-accent px-8 py-3 rounded-full font-medium hover:opacity-90 transition-all hover:scale-105">
-                Contact Us
+                {t.contactBtn}
               </button>
             </a>
           </div>
