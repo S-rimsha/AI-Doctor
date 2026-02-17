@@ -214,8 +214,8 @@ const Chat = () => {
                   className="w-32 h-32 mx-auto rounded-lg"
                 />
                 <div className="text-xs space-y-2">
-                  <p><strong>Step 1:</strong> Scan QR code or click: <a href="https://api.whatsapp.com/send?phone=15817019840&text=JA9HDD" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Open WhatsApp</a></p>
-                  <p><strong>Step 2:</strong> Send linking code: <code className="bg-muted px-2 py-1 rounded">JA9HDD</code></p>
+                  <p><strong>Step 1:</strong> Scan QR code or click: <a href="https://api.whatsapp.com/send?phone=15817019840&text=MLBDH2" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Open WhatsApp</a></p>
+                  <p><strong>Step 2:</strong> Send linking code: <code className="bg-muted px-2 py-1 rounded">MLBDH2</code></p>
                   <p><strong>Step 3:</strong> Type "Hi" to start chatting!</p>
                 </div>
               </div>
