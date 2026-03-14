@@ -120,8 +120,8 @@ const Settings = () => {
                   </Label>
                   <Switch 
                     id="darkmode"
-                    checked={darkMode}
-                    onCheckedChange={setDarkMode}
+                    checked={theme === "dark"}
+                    onCheckedChange={toggleTheme}
                   />
                 </div>
                 <p className="text-sm text-muted-foreground">
