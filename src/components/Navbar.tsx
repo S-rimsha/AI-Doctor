@@ -2,15 +2,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Activity, Menu, X, User, MessageSquare, Sparkles, Mail, ScanLine } from "lucide-react";
+import { Activity, Menu, X, User, MessageSquare, Sparkles, Mail, ScanLine, Sun, Moon } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
   const { language, setLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const translations = {
@@ -43,7 +45,7 @@ export const Navbar = () => {
   const t = translations[language as keyof typeof translations] || translations.en;
 
   return (
-    <nav className="sticky top-0 z-50 glass border-b border-white/10">
+    <nav className="sticky top-0 z-50 glass border-b border-border/30">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group">
@@ -54,31 +56,31 @@ export const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center gap-2">
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">{t.home}</Link>
-            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">{t.about}</Link>
-            <Link to="/health-guide" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">{t.healthGuide}</Link>
-            <Link to="/pharmacies" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">{t.pharmacies}</Link>
-            <Link to="/track-records" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">{t.trackRecords}</Link>
-            <Link to="/image-analysis" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5 flex items-center gap-1"><ScanLine className="h-4 w-4" />{t.imageAnalysis}</Link>
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50">{t.home}</Link>
+            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50">{t.about}</Link>
+            <Link to="/health-guide" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50">{t.healthGuide}</Link>
+            <Link to="/pharmacies" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50">{t.pharmacies}</Link>
+            <Link to="/track-records" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50">{t.trackRecords}</Link>
+            <Link to="/image-analysis" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50 flex items-center gap-1"><ScanLine className="h-4 w-4" />{t.imageAnalysis}</Link>
             
             {user && (
               <TooltipProvider>
-                <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-2">
+                <div className="flex items-center gap-1 ml-2 border-l border-border/30 pl-2">
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Link to="/upcoming-features" className="p-2 hover:bg-white/10 rounded-lg transition-colors"><Sparkles className="h-5 w-5" /></Link>
+                      <Link to="/upcoming-features" className="p-2 hover:bg-muted/50 rounded-lg transition-colors"><Sparkles className="h-5 w-5" /></Link>
                     </TooltipTrigger>
                     <TooltipContent><p>{t.upcomingFeatures}</p></TooltipContent>
                   </Tooltip>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Link to="/contact" className="p-2 hover:bg-white/10 rounded-lg transition-colors"><Mail className="h-5 w-5" /></Link>
+                      <Link to="/contact" className="p-2 hover:bg-muted/50 rounded-lg transition-colors"><Mail className="h-5 w-5" /></Link>
                     </TooltipTrigger>
                     <TooltipContent><p>{t.contact}</p></TooltipContent>
                   </Tooltip>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Link to="/profile" className="p-2 hover:bg-white/10 rounded-lg transition-colors"><User className="h-5 w-5" /></Link>
+                      <Link to="/profile" className="p-2 hover:bg-muted/50 rounded-lg transition-colors"><User className="h-5 w-5" /></Link>
                     </TooltipTrigger>
                     <TooltipContent><p>{t.profile}</p></TooltipContent>
                   </Tooltip>
@@ -93,21 +95,39 @@ export const Navbar = () => {
             )}
 
             {!user && (
-              <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-white/5">{t.contact}</Link>
+              <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-muted/50">{t.contact}</Link>
             )}
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg hover:bg-muted/50 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-primary" />}
+            </button>
             
             <LanguageSwitcher language={language} onLanguageChange={(lang) => setLanguage(lang as any)} />
 
             {user ? (
-              <Button onClick={signOut} variant="outline" size="sm" className="glass border-white/20 ml-2">{t.logout}</Button>
+              <Button onClick={signOut} variant="outline" size="sm" className="glass border-border/30 ml-2">{t.logout}</Button>
             ) : (
               <Button onClick={() => navigate("/auth")} size="sm" className="bg-gradient-to-r from-primary to-accent ml-2">{t.login}</Button>
             )}
           </div>
 
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 rounded-lg glass">
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg hover:bg-muted/50 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-primary" />}
+            </button>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg glass">
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
@@ -130,7 +150,7 @@ export const Navbar = () => {
               <LanguageSwitcher language={language} onLanguageChange={(lang) => setLanguage(lang as any)} />
             </div>
             {user ? (
-              <Button onClick={signOut} variant="outline" className="w-full glass border-white/20">{t.logout}</Button>
+              <Button onClick={signOut} variant="outline" className="w-full glass border-border/30">{t.logout}</Button>
             ) : (
               <Button onClick={() => { navigate("/auth"); setMobileMenuOpen(false); }} className="w-full bg-gradient-to-r from-primary to-accent">{t.login}</Button>
             )}
