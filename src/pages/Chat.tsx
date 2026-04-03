@@ -38,7 +38,7 @@ const Chat = () => {
         setMessages([
           {
             text: language === 'en' 
-              ? "Hello! I'm MediAgent, your AI health assistant. You're using demo mode. Describe your symptoms and I'll help you understand what might be going on. Sign up to save your chat history!"
+              ? "Hello! I'm MediAgent, your AI health assistant. You're using demo mode. Describe your symptoms and I'll help you understand what might be going on. Sign up to save your chat history!!"
               : language === 'hi'
               ? "नमस्ते! मैं MediAgent हूं, आपका AI स्वास्थ्य सहायक। आप डेमो मोड उपयोग कर रहे हैं। अपने लक्षण बताएं और मैं आपको समझने में मदद करूंगा।"
               : language === 'mr'
