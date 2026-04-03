@@ -77,7 +77,7 @@ const Chat = () => {
               ? "नमस्ते! मैं MediAgent हूं, आपका AI स्वास्थ्य सहायक। अपने लक्षण बताएं और मैं आपको समझने में मदद करूंगा।"
               : language === 'mr'
               ? "नमस्कार! मी MediAgent आहे, तुमचा AI आरोग्य सहाय्यक। तुमची लक्षणे सांगा आणि मी समजून घेण्यास मदत करेन।"
-              : "¡Hola! Soy MediAgent, tu asistente de salud AI. Describe tus síntomas y te ayudaré.",
+              : "Hola! Soy MediAgent, tu asistente de salud AI. Describe tus síntomas y te ayudaré.",
             isUser: false,
           },
         ]);
